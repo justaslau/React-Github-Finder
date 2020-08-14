@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Search extends Component {
   state = {
     searchBoxText: '',
   };
+
+  static propTypes = {
+    searchUsers: PropTypes.func.isRequired,
+  };
+
   onSubmitHandle = (e) => {
     e.preventDefault();
-    console.log(this.state.searchBoxText);
+    this.props.searchUsers(this.state.searchBoxText);
+    this.setState({ searchBoxText: '' });
   };
   onChangeHandle = (e) => {
     this.setState({ [e.target.name]: e.target.value });
